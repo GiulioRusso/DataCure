@@ -37,6 +37,7 @@
             <input type="file" name="imageFile" id="imageFile" onchange="displayFileName()"><br>
             <span id="fileName"></span><br>
 
+
             <label for="operatorDescription">Operator Description:</label>
             <input type="text" name="operatorDescription" id="operatorDescription"><br>
 
