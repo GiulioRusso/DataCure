@@ -18,6 +18,7 @@ public class Image {
         return imageFile;
     }
 
+
     public void setImageFile(File imageFile) {
         this.imageFile = imageFile;
     }
