@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+    
+<struts>
+	<package name="DataCureApp" extends="struts-default">
+		<interceptors>
+			<interceptor class="it.unicas.DataCure.interceptors.LoginInterceptor"
+				name="loginInterceptor" />
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="loginInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="loginStack"/>
+
+		<action name="loginAction" class="it.unicas.DataCure.action.LoginAction">
+			<result name="doctor" type="redirect">welcomeDoctorAction</result>
+			<result name="operator" type="redirect">welcomeOperatorAction</result>
+			<result name="admin" type="redirect">welcomeAdminAction</result>
+			<result name="input">/login.jsp</result>
+		</action>
+
+		<action name="logoutAction" class="it.unicas.DataCure.action.LogoutAction">
+			<result name="input">/login.jsp</result>
+		</action>
+
+		<action name="welcomeAdminAction" class="it.unicas.DataCure.action.WelcomeAdminAction">
+			<result name="success">/welcomeAdmin.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+
+		<action name="addAction" class="it.unicas.DataCure.action.AddAction">
+			<result name="success" type="redirect">welcomeAdminAction</result>
+			<result name="error">/welcomeAdmin.jsp</result>
+		</action>
+
+		<action name="updateAction" class="it.unicas.DataCure.action.UpdateAction">
+			<result name="success" type="redirect">welcomeAdminAction</result>
+			<result name="error">/welcomeAdmin.jsp</result>
+		</action>
+
+		<action name="deleteAction" class="it.unicas.DataCure.action.DeleteAction">
+			<result name="success" type="redirect">welcomeAdminAction</result>
+			<result name="error">/welcomeAdmin.jsp</result>
+		</action>
+
+		<action name="uploadAction" class="it.unicas.DataCure.action.UploadAction">
+			<result name="success">welcomeOperatorAction</result>
+			<result name="error">/welcomeOperator.jsp</result>
+		</action>
+
+
+		<action name="welcomeDoctorAction" class="it.unicas.DataCure.action.WelcomeDoctorAction">
+			<result name="success">/welcomeDoctor.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+
+		<action name="welcomeOperatorAction" class="it.unicas.DataCure.action.WelcomeOperatorAction">
+			<result name="success">/welcomeOperator.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+
+
+
+
+
+
+
+	</package>
+</struts>

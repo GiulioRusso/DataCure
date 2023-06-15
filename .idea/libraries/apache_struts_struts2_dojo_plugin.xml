@@ -1,0 +1,24 @@
+<component name="libraryTable">
+  <library name="apache.struts.struts2.dojo.plugin" type="repository">
+    <properties maven-id="org.apache.struts:struts2-dojo-plugin:2.3.37">
+      <exclude>
+        <dependency maven-id="org.freemarker:freemarker" />
+        <dependency maven-id="org.apache.struts.xwork:xwork-core" />
+        <dependency maven-id="org.apache.struts:struts2-core" />
+        <dependency maven-id="org.apache.commons:commons-lang3" />
+        <dependency maven-id="ognl:ognl" />
+        <dependency maven-id="javassist:javassist" />
+        <dependency maven-id="commons-io:commons-io" />
+        <dependency maven-id="commons-fileupload:commons-fileupload" />
+        <dependency maven-id="asm:asm" />
+        <dependency maven-id="asm:asm-tree" />
+        <dependency maven-id="asm:asm-commons" />
+      </exclude>
+    </properties>
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-dojo-plugin/2.3.37/struts2-dojo-plugin-2.3.37.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
