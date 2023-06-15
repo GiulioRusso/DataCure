@@ -1,47 +1,59 @@
 package it.unicas.DataCure.dao;
 
+import it.unicas.DataCure.action.LoginAction;
 import it.unicas.DataCure.dbutil.DBUtil;
-import it.unicas.DataCure.pojo.Image;
-import org.apache.commons.io.FileUtils;
 
-import java.io.File;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.Date;
+import java.util.logging.Logger;
 
 public class ImageDAO {
 
-    public static void addImage(Image image) {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+    private static final Logger logger = Logger.getLogger(LoginAction.class.getName());
 
-        try {
-            connection = DBUtil.getConnection();
+    public static int addImage(String imageName, String operatorDescription) {
+        // Check if the imageName ends with a valid extension
+        if (!(imageName.endsWith(".jpg") || imageName.endsWith(".png") || imageName.endsWith(".tiff"))) {
+            logger.severe("ERROR: Invalid extension. Image accepted in .jpg/.png/.tiff. Image cannot be added.");
+            return 2;
+        }
 
-            // Prepare the SQL statement
-            String sql = "INSERT INTO images (upload_date, labeled, operator_description, doctor_description, path) " +
-                    "VALUES (?, ?, ?, ?, ?)";
-            preparedStatement = connection.prepareStatement(sql);
+        // Check if the operatorDescription is null
+        if (operatorDescription == null) {
+            logger.severe("ERROR: Invalid description. Description can't be null. Image cannot be added.");
+            return 3;
+        }
 
-            // Set the parameter values
-            preparedStatement.setTimestamp(1, new java.sql.Timestamp(image.getUploadDate().getTime()));
-            preparedStatement.setBoolean(2, image.isLabeled());
-            preparedStatement.setString(3, image.getOperatorDescription());
-            preparedStatement.setString(4, image.getDoctorDescription());
-            preparedStatement.setString(5, image.getImagePath());
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement insertStmt = conn.prepareStatement("INSERT INTO images (idimages, upload_date, labeled, operator_description, doctor_description) " +
+                     "VALUES (?, ?, ?, ?, ?)");
+            PreparedStatement checkStmt = conn.prepareStatement("SELECT idimages FROM images WHERE idimages = ?")) {
 
-            // Execute the SQL statement
-            preparedStatement.executeUpdate();
+            checkStmt.setString(1, imageName);
+            ResultSet resultSet = checkStmt.executeQuery();
 
-            // Save the uploaded file to the specified path
-            File uploadedFile = image.getImageFile();
-            String uploadPath = "/web/resources/database-images";
-            File destination = new File(uploadPath, uploadedFile.getName());
-            FileUtils.copyFile(uploadedFile, destination);
-        } catch (SQLException | IOException e) {
+            // Check if the imageName is unique
+            if (resultSet.next()) {
+                // Image name already exists in the database
+                logger.severe("ERROR: Image named '" + imageName + "' already exists.");
+                return 1;
+            } else {
+                insertStmt.setString(1, imageName);
+                insertStmt.setTimestamp(2, new Timestamp(new Date().getTime()));
+                insertStmt.setInt(3, 0);
+                insertStmt.setString(4, operatorDescription);
+                insertStmt.setNull(5, java.sql.Types.VARCHAR);
+
+                insertStmt.executeUpdate();
+                System.out.println("MESSAGE: Image added successfully!");
+                return 0;
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
+            logger.severe("ERROR: Failed to add the Image. Exeption occured in ImageDAO.addImage");
+            return 4;
         }
     }
 
 }
+

@@ -5,32 +5,20 @@ import java.util.Date;
 
 public class Image {
 
-    private int idimage;
+    private String idImage;
     private Date uploadDate;
     private boolean labeled;
     private String operatorDescription;
     private String doctorDescription;
     private String imagePath;
 
-    private File imageFile;
 
-    public File getImageFile() {
-        return imageFile;
+    public String getIdImage() {
+        return idImage;
     }
 
-
-    public void setImageFile(File imageFile) {
-        this.imageFile = imageFile;
-    }
-
-    // Getters and setters
-
-    public int getIdimage() {
-        return idimage;
-    }
-
-    public void setIdimage(int idimage) {
-        this.idimage = idimage;
+    public void setIdImage(String idImage) {
+        this.idImage = idImage;
     }
 
     public Date getUploadDate() {

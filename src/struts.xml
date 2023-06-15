@@ -46,21 +46,22 @@
 			<result name="error">/welcomeAdmin.jsp</result>
 		</action>
 
+		<action name="welcomeOperatorAction" class="it.unicas.DataCure.action.WelcomeOperatorAction">
+			<result name="success">/welcomeOperator.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+
 		<action name="uploadAction" class="it.unicas.DataCure.action.UploadAction">
 			<result name="success">welcomeOperatorAction</result>
 			<result name="error">/welcomeOperator.jsp</result>
 		</action>
-
 
 		<action name="welcomeDoctorAction" class="it.unicas.DataCure.action.WelcomeDoctorAction">
 			<result name="success">/welcomeDoctor.jsp</result>
 			<result name="input">/login.jsp</result>
 		</action>
 
-		<action name="welcomeOperatorAction" class="it.unicas.DataCure.action.WelcomeOperatorAction">
-			<result name="success">/welcomeOperator.jsp</result>
-			<result name="input">/login.jsp</result>
-		</action>
+
 
 
 

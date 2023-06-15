@@ -39,6 +39,9 @@ public class UpdateAction extends ActionSupport {
 			updateMessage = "ERROR: User with ID '" + userID + "' does not exist!";
 			statusCode = "error";
 		} else if (userUpdated == 3) {
+			updateMessage = "ERROR: Password change not allowed for user 'admin'. User cannot be updated.";
+			statusCode = "error";
+		} else if (userUpdated == 4) {
 			updateMessage = "ERROR: Failed to update the user. Exception occurred in LoginDAO.updateUser";
 			statusCode = "error";
 		}

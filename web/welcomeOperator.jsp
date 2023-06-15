@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -22,6 +23,11 @@
     </script>
 </head>
 <body>
+<%
+    if(session.getAttribute("loggedinUser") == null) {
+        response.sendRedirect("login.jsp");
+    }
+%>
 <div class="container">
     <div class="left-column">
         <h2>Welcome Operator</h2>
@@ -37,13 +43,15 @@
             <input type="file" name="imageFile" id="imageFile" onchange="displayFileName()"><br>
             <span id="fileName"></span><br>
 
-
             <label for="operatorDescription">Operator Description:</label>
             <input type="text" name="operatorDescription" id="operatorDescription"><br>
 
             <button type="submit">Save Data</button>
             <button type="button" onclick="clearFileInput()">Clear File</button> <!-- PULIRE ANCHE LA DESCRP -->
         </form>
+
+        <s:actionerror />
+
     </div>
 </div>
 </body>

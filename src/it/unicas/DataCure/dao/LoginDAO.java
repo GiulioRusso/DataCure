@@ -176,6 +176,12 @@ public class LoginDAO {
 			return 1;
 		}
 
+		// Check if the userID is "admin"
+		if (userID.equals("admin")) {
+			logger.severe("ERROR: Password change not allowed for user 'admin'. User cannot be updated.");
+			return 3;
+		}
+
 		try (Connection conn = DBUtil.getConnection();
 			 PreparedStatement checkStmt = conn.prepareStatement("SELECT idlogin FROM login WHERE idlogin = ?");
 			 PreparedStatement updateStmt = conn.prepareStatement("UPDATE login SET password = ? WHERE idlogin = ?")) {
@@ -202,7 +208,7 @@ public class LoginDAO {
 			e.printStackTrace();
 		}
 
-		return 3; // Return error code 3 if user update failed due to an exception
+		return 4; // Return error code 3 if user update failed due to an exception
 	}
 
 

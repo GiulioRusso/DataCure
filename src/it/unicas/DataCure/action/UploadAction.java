@@ -1,47 +1,65 @@
 package it.unicas.DataCure.action;
 
 import com.opensymphony.xwork2.ActionSupport;
-import it.unicas.DataCure.dao.ImageDAO;
-import it.unicas.DataCure.pojo.Image;
-import org.apache.commons.io.FileUtils;
-
 import java.io.File;
-import java.util.Date;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.util.UUID;
+
+import it.unicas.DataCure.dao.ImageDAO;
+import org.apache.commons.io.FileUtils;
 
 public class UploadAction extends ActionSupport {
 
     private File imageFile;
     private String imageFileFileName;
     private String operatorDescription;
+    private String uploadMessage;
 
-    public String execute() {
-        try {
-            // Get the uploaded file
-            File uploadedFile = getImageFile();
+    public String execute() throws IOException {
 
-            // Set the path for saving the uploaded file
-            String uploadPath = "/path/to/project"; // Modify this path as per your project's requirements
+        // Specify the path to save the uploaded image
+        String databasePath = "/Users/giuliorusso/Library/Mobile Documents/com~apple~CloudDocs/Documents/Istruzione/Universita/Magistrale/Distributed Programming/Progetto/DataCure/web/resources/database-images/";
 
-            // Save the uploaded file to the specified path
-            File destination = new File(uploadPath, getImageFileFileName());
-            FileUtils.copyFile(uploadedFile, destination);
+        // Extract the original file name and extension from the uploaded file
+        // Generate a unique filename for the uploaded image
+        //String targetFileName = UUID.randomUUID().toString() + "_" + imageFileFileName;
+        String targetFileName = imageFileFileName;
 
-            // Create an Image object with the necessary details
-            Image image = new Image();
-            image.setUploadDate(new Date());
-            image.setLabeled(false);
-            image.setOperatorDescription(getOperatorDescription());
-            image.setImagePath(destination.getPath());
+        // Create a File object representing the target file
+        File targetFile = new File(databasePath, targetFileName);
 
-            // Insert the image details into the database
-            ImageDAO.addImage(image);
+        // Copy the uploaded file to the target location
+        FileUtils.copyFile(imageFile, targetFile);
 
-            return "success";
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "error";
+        // Call the addImage method to save the image details in the database
+        int addImageResult = ImageDAO.addImage(targetFileName, getOperatorDescription());
+        String statusCode = "";
+
+        if (addImageResult == 0) {
+            uploadMessage = "MESSAGE: Image added successfully!";
+            statusCode = "success"; // Return a success result
+        } else if (addImageResult == 1) {
+            uploadMessage = "ERROR: Image named '" + targetFileName + "' already exists.";
+            statusCode = "error";
+        } else if (addImageResult == 2) {
+            uploadMessage = "ERROR: Invalid extension. Image accepted in .jpg/.png/.tiff. Image cannot be added.";
+            statusCode = "error";
+        } else if (addImageResult == 3) {
+            uploadMessage = "ERROR: Invalid description. Description can't be null. Image cannot be added.";
+            statusCode = "error";
+        } else if (addImageResult == 4) {
+            uploadMessage = "ERROR: Failed to add the Image. Exception occurred in ImageDAO.addImage";
+            statusCode = "error";
         }
+
+        // Print message on the welcomeOperator.jsp
+        addActionError(uploadMessage);
+
+        return statusCode;
     }
+
 
 
     public File getImageFile() {
