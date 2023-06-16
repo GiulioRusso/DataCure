@@ -25,5 +25,6 @@
     <orderEntry type="library" name="apache.struts.struts2.dojo.plugin" level="project" />
     <orderEntry type="library" name="commons-lang3-3.8.1" level="project" />
     <orderEntry type="library" name="commons-fileupload-1.4" level="project" />
+    <orderEntry type="library" name="struts2-core-2.5.22" level="project" />
   </component>
 </module>

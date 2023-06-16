@@ -20,7 +20,7 @@ public class UploadAction extends ActionSupport {
     public String execute() throws IOException {
 
         // Specify the path to save the uploaded image
-        String databasePath = "/Users/giuliorusso/Library/Mobile Documents/com~apple~CloudDocs/Documents/Istruzione/Universita/Magistrale/Distributed Programming/Progetto/DataCure/web/resources/database-images/";
+        String databasePath = "C:\\Users\\gianf\\IdeaProjects\\DataCure\\web\\resources\\database-images";
 
         // Extract the original file name and extension from the uploaded file
         // Generate a unique filename for the uploaded image

@@ -10,6 +10,7 @@
           <element id="library" level="project" name="javax.servlet.api" />
           <element id="library" level="project" name="commons-lang3-3.8.1" />
           <element id="library" level="project" name="commons-fileupload-1.4" />
+          <element id="library" level="project" name="struts2-core-2.5.22" />
         </element>
         <element id="directory" name="classes">
           <element id="module-output" name="DataCure" />

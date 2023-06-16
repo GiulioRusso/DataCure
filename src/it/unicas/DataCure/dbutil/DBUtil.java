@@ -24,7 +24,7 @@ public class DBUtil {
 	/**
 	 * The password for connecting to the MySQL database.
 	 */
-	private static final String PASSWORD = "password";
+	private static final String PASSWORD = "sgabelli-belli99";
 
 	/**
 	 * Establishes a connection to the MySQL database based on the parameters specified in the DBUtil class.
