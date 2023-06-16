@@ -15,6 +15,7 @@
 		</interceptors>
 		<default-interceptor-ref name="loginStack"/>
 
+		<!-- Based on the ID provided, different users launch different actions -->
 		<action name="loginAction" class="it.unicas.DataCure.action.LoginAction">
 			<result name="doctor" type="redirect">welcomeDoctorAction</result>
 			<result name="operator" type="redirect">welcomeOperatorAction</result>
@@ -32,17 +33,17 @@
 		</action>
 
 		<action name="addAction" class="it.unicas.DataCure.action.AddAction">
-			<result name="success" type="redirect">welcomeAdminAction</result>
+			<result name="success" type="redirect">welcomeAdminAction</result> <!-- need the action to reload all the users -->
 			<result name="error">/welcomeAdmin.jsp</result>
 		</action>
 
 		<action name="updateAction" class="it.unicas.DataCure.action.UpdateAction">
-			<result name="success" type="redirect">welcomeAdminAction</result>
+			<result name="success" type="redirect">welcomeAdminAction</result> <!-- need the action to reload all the users -->
 			<result name="error">/welcomeAdmin.jsp</result>
 		</action>
 
 		<action name="deleteAction" class="it.unicas.DataCure.action.DeleteAction">
-			<result name="success" type="redirect">welcomeAdminAction</result>
+			<result name="success" type="redirect">welcomeAdminAction</result> <!-- need the action to reload all the users -->
 			<result name="error">/welcomeAdmin.jsp</result>
 		</action>
 
@@ -52,7 +53,7 @@
 		</action>
 
 		<action name="uploadAction" class="it.unicas.DataCure.action.UploadAction">
-			<result name="success">welcomeOperatorAction</result>
+			<result name="success">/welcomeOperator.jsp</result>
 			<result name="error">/welcomeOperator.jsp</result>
 		</action>
 

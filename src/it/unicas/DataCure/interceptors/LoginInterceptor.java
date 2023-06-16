@@ -21,7 +21,6 @@ public class LoginInterceptor implements Interceptor {
 
 		// Load data into the database
 		DataLoader.loadDataFromFile("/Users/giuliorusso/Library/Mobile Documents/com~apple~CloudDocs/Documents/Istruzione/Universita/Magistrale/Distributed Programming/Progetto/DataCure/src/it/unicas/DataCure/dbutil/Login.txt","login");
-		//DataLoader.loadDataFromFile("/Users/giuliorusso/Library/Mobile Documents/com~apple~CloudDocs/Documents/Istruzione/Universita/Magistrale/Distributed Programming/Progetto/DataCure/src/it/unicas/DataCure/dbutil/Images.txt","images");
 	}
 
 	@Override

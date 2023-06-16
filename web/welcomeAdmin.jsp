@@ -48,7 +48,9 @@
             <s:submit id="deleteButton" value="Delete" method="deleteAction"/>
         </s:form>
 
+        <!-- Show MESSAGE/ERROR -->
         <s:actionerror />
+
     </div>
 
     <div class="right-column">

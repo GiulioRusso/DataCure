@@ -92,7 +92,9 @@
 				<s:submit value="Login" />
 			</s:form>
 
+			<!-- Show MESSAGE/ERROR -->
 			<s:actionerror />
+
 		</div>
 	</div>
 

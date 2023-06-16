@@ -25,19 +25,19 @@ public class UploadAction extends ActionSupport {
         // Extract the original file name and extension from the uploaded file
         // Generate a unique filename for the uploaded image
         //String targetFileName = UUID.randomUUID().toString() + "_" + imageFileFileName;
+        // genera nomi unici + nome file origniale. é utile? secondo me no se lo mettiamo uno può caricare due volte lo stesso file
         String targetFileName = imageFileFileName;
 
         // Create a File object representing the target file
         File targetFile = new File(databasePath, targetFileName);
-
-        // Copy the uploaded file to the target location
-        FileUtils.copyFile(imageFile, targetFile);
 
         // Call the addImage method to save the image details in the database
         int addImageResult = ImageDAO.addImage(targetFileName, getOperatorDescription());
         String statusCode = "";
 
         if (addImageResult == 0) {
+            // Copy the uploaded file to the target location only if the addImage function return 0
+            FileUtils.copyFile(imageFile, targetFile);
             uploadMessage = "MESSAGE: Image added successfully!";
             statusCode = "success"; // Return a success result
         } else if (addImageResult == 1) {
@@ -59,8 +59,6 @@ public class UploadAction extends ActionSupport {
 
         return statusCode;
     }
-
-
 
     public File getImageFile() {
         return imageFile;
