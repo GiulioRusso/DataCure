@@ -55,7 +55,7 @@
 
     <div class="right-column">
         <h2>Login Records</h2>
-        <table class="loginTable">
+        <table>
             <thead>
             <tr>
                 <th>ID</th>

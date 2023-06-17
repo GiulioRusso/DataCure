@@ -51,17 +51,18 @@ public class LoginDAO {
 	public static List<Login> getAllUsers() {
 		List<Login> userList = new ArrayList<>();
 
-		try (Connection conn = DBUtil.getConnection();
-			 PreparedStatement stmt = conn.prepareStatement("SELECT idlogin, password FROM login");
-			 ResultSet rs = stmt.executeQuery()) {
+		try {
+				Connection conn = DBUtil.getConnection();
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery("SELECT idlogin, password FROM login");
 
-			while (rs.next()) {
-				String ID = rs.getString("idlogin");
-				String password = rs.getString("password");
+				while (rs.next()) {
+					String ID = rs.getString("idlogin");
+					String password = rs.getString("password");
 
-				Login login = new Login(ID, password);
-				userList.add(login);
-			}
+					Login login = new Login(ID, password);
+					userList.add(login);
+				}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

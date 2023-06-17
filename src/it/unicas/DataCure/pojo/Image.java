@@ -1,18 +1,30 @@
 package it.unicas.DataCure.pojo;
 
 import java.io.File;
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Image {
 
     private String idImage;
-    private Date uploadDate;
+    private Timestamp uploadDate;
     private boolean labeled;
     private String operatorDescription;
     private String doctorDescription;
     private String imagePath;
 
+    public Image() {
 
+    }
+
+    public Image(String imageID, Timestamp imageDate, boolean label, String o_description, String d_description) {
+
+        setIdImage(imageID);
+        setUploadDate(imageDate);
+        setLabel(label);
+        setOperatorDescription(o_description);
+        setDoctorDescription(d_description);
+    }
     public String getIdImage() {
         return idImage;
     }
@@ -25,7 +37,7 @@ public class Image {
         return uploadDate;
     }
 
-    public void setUploadDate(Date uploadDate) {
+    public void setUploadDate(Timestamp uploadDate) {
         this.uploadDate = uploadDate;
     }
 
@@ -33,7 +45,7 @@ public class Image {
         return labeled;
     }
 
-    public void setLabeled(boolean labeled) {
+    public void setLabel(boolean labeled) {
         this.labeled = labeled;
     }
 

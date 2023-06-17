@@ -62,13 +62,10 @@
 			<result name="input">/login.jsp</result>
 		</action>
 
-
-
-
-
-
-
-
+		<action name="displayImageAction" class="it.unicas.DataCure.action.DisplayImageAction">
+			<result name="success">/displayImage.jsp</result>
+			<result name="error">/welcomeDoctor.jsp</result>
+		</action>
 
 	</package>
 </struts>

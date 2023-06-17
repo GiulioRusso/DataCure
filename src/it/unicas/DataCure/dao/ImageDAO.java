@@ -2,9 +2,13 @@ package it.unicas.DataCure.dao;
 
 import it.unicas.DataCure.action.LoginAction;
 import it.unicas.DataCure.dbutil.DBUtil;
+import it.unicas.DataCure.pojo.Image;
+import it.unicas.DataCure.pojo.Login;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class ImageDAO {
@@ -53,6 +57,32 @@ public class ImageDAO {
             logger.severe("ERROR: Failed to add the Image. Exeption occured in ImageDAO.addImage");
             return 4;
         }
+    }
+
+    public static List<Image> getAllImages() {
+        List<Image> imageList = new ArrayList<>();
+
+        try {
+                Connection conn = DBUtil.getConnection();
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT * FROM images");
+
+                while (rs.next()) {
+                    String imageID = rs.getString("idimages");
+                    Timestamp imageDate = rs.getTimestamp("upload_date");
+                    boolean label = rs.getBoolean("labeled");
+                    String o_descr = rs.getString("operator_description");
+                    String d_descr = rs.getString("doctor_description");
+
+                    Image image = new Image(imageID, imageDate, label, o_descr, d_descr);
+                    imageList.add(image);
+                }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.severe("ERROR: Failed to get images. Exeption occured in ImageDAO.getAllImages");
+        }
+
+        return imageList;
     }
 
 }
