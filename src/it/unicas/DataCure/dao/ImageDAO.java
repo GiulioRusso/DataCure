@@ -60,6 +60,8 @@ public class ImageDAO {
     }
 
     public static List<Image> getAllImages() {
+
+        // Retrieve every image in the database
         List<Image> imageList = new ArrayList<>();
 
         try {
@@ -80,10 +82,34 @@ public class ImageDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             logger.severe("ERROR: Failed to get images. Exeption occured in ImageDAO.getAllImages");
+            return null;
         }
 
         return imageList;
     }
 
+    public static int updateImage(String id, boolean label, String dDesc) {
+
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement updateStmt = conn.prepareStatement("UPDATE images SET labeled = ?, " +
+                     "doctor_description = ? " +
+                     "WHERE idimages = ?")) {
+
+            // Update image properties
+            updateStmt.setBoolean(1, label);
+            updateStmt.setString(2, dDesc);
+            updateStmt.setString(3, id);
+            updateStmt.executeUpdate();
+            System.out.println(updateStmt);
+            logger.severe("MESSAGE: Image updated successfully!");
+
+            return 0;
+
+        } catch (SQLException e) {
+            logger.severe("ERROR: An error has occurred during image update");
+            e.printStackTrace();
+        }
+            return 1;
+    }
 }
 

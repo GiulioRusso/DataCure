@@ -52,15 +52,19 @@
             </tr>
             </thead>
             <tbody id="imageRecords">
-            <s:iterator value="imageList" var="image">
+            <s:iterator value="imageList">
                 <tr>
-                    <td><s:property value="#image.idImage"/></td>
-                    <td><s:property value="#image.uploadDate"/></td>
-                    <td><s:property value="#image.labeled"/></td>
-                    <td><s:property value="#image.operatorDescription"/></td>
-                    <td><s:property value="#image.doctorDescription"/></td>
+                    <td><s:property value="idImage"/></td>
+                    <td><s:property value="uploadDate"/></td>
+                    <td><s:property value="labeled"/></td>
+                    <td><s:property value="operatorDescription"/></td>
+                    <td><s:property value="doctorDescription"/></td>
                     <s:form action="displayImageAction">
                         <s:hidden value="%{idImage}" name="ID"/>
+                        <s:hidden value="%{uploadDate}" name="date"/>
+                        <s:hidden value="%{labeled}" name="label"/>
+                        <s:hidden value="%{operatorDescription}" name="oDesc"/>
+                        <s:hidden value="%{doctorDescription}" name="dDesc"/>
                         <s:submit value="Edit"/>
                     </s:form>
                 </tr>

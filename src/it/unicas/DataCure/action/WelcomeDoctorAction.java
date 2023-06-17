@@ -24,14 +24,18 @@ public class WelcomeDoctorAction extends ActionSupport{
 	private List<Image> imageList;
 
 	public void loadImages() {
+		// Retrieve all images
 		imageList = ImageDAO.getAllImages();
-		System.out.println("MESSAGE: Image instances:");
-		printImagesInfo(imageList);
 	}
 
 	public String execute() {
 		loadImages();
-		return "success";
+		if(imageList != null)
+			return "success";
+		else {
+			System.out.println("An error during fetch has occurred...");
+			return "error";
+		}
 	}
 
 	public void printImagesInfo(List<Image> imageList) {

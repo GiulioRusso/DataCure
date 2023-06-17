@@ -67,5 +67,10 @@
 			<result name="error">/welcomeDoctor.jsp</result>
 		</action>
 
+		<action name="updateImageAction" class="it.unicas.DataCure.action.UpdateImageAction">
+			<result name="success" type="redirect">welcomeDoctorAction</result>
+			<result name="error" type="redirect">welcomeDoctorAction</result>
+		</action>
+
 	</package>
 </struts>
