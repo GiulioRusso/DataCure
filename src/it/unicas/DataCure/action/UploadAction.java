@@ -20,7 +20,7 @@ public class UploadAction extends ActionSupport {
     public String execute() throws IOException {
 
         // Specify the path to save the uploaded image
-        String databasePath = "/Users/giuliorusso/Library/Mobile Documents/com~apple~CloudDocs/Documents/Istruzione/Universita/Magistrale/Distributed Programming/Progetto/DataCure/web/resources/database-images";
+        String databasePath = "C:\\Users\\gianf\\IdeaProjects\\DataCure\\web\\resources\\database-images";
 
         // Create a File object representing the target file
         String targetFileName = imageFileFileName;
@@ -42,7 +42,7 @@ public class UploadAction extends ActionSupport {
             uploadMessage = "ERROR: Invalid extension. Image accepted in .jpg/.png/.tiff. Image cannot be added.";
             statusCode = "error";
         } else if (addImageResult == 3) {
-            uploadMessage = "ERROR: Invalid description. Description can't be null. Image cannot be added.";
+            uploadMessage = "ERROR: Invalid description. Description can't be empty. Image cannot be added.";
             statusCode = "error";
         } else if (addImageResult == 4) {
             uploadMessage = "ERROR: Failed to add the Image. Exception occurred in ImageDAO.addImage";

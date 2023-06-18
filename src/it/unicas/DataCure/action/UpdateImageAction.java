@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import it.unicas.DataCure.dao.ImageDAO;
 import it.unicas.DataCure.dao.LoginDAO;
 import it.unicas.DataCure.pojo.Login;
+import org.apache.struts2.ServletActionContext;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -22,6 +23,7 @@ public class UpdateImageAction extends ActionSupport {
     public String execute() {
 
         String statusCode = "";
+        ServletActionContext.getRequest().getSession().setAttribute("updateImage", ID);
         System.out.println(ID);
         System.out.println(label);
         System.out.println(dDesc);
@@ -32,11 +34,17 @@ public class UpdateImageAction extends ActionSupport {
             addActionError(updateMessage);
             statusCode = "success";
         }
-        else {
-            updateMessage = "ERROR: An error has occurred during image update";
+        else if(check == 1) {
+            updateMessage = "ERROR: Invalid description. Description can't be empty. Image cannot be updated.";
             logger.severe(updateMessage);
             addActionError(updateMessage);
-            statusCode = "input";
+            statusCode = "error";
+        }
+        else if(check == 2) {
+            updateMessage = "ERROR: Failed to update the Image. Exception occurred in ImageDAO.updateImage";
+            logger.severe(updateMessage);
+            addActionError(updateMessage);
+            statusCode = "error";
         }
 
         return statusCode;

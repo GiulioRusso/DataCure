@@ -23,8 +23,8 @@ public class ImageDAO {
         }
 
         // Check if the operatorDescription is null
-        if (operatorDescription == null) {
-            logger.severe("ERROR: Invalid description. Description can't be null. Image cannot be added.");
+        if (operatorDescription.isEmpty()) {
+            logger.severe("ERROR: Invalid description. Description can't be empty. Image cannot be added.");
             return 3;
         }
 
@@ -90,6 +90,11 @@ public class ImageDAO {
 
     public static int updateImage(String id, boolean label, String dDesc) {
 
+        if (dDesc.isEmpty()) {
+            logger.severe("ERROR: Invalid description. Description can't be empty. Image cannot be updated.");
+            return 1;
+        }
+
         try (Connection conn = DBUtil.getConnection();
              PreparedStatement updateStmt = conn.prepareStatement("UPDATE images SET labeled = ?, " +
                      "doctor_description = ? " +
@@ -106,10 +111,10 @@ public class ImageDAO {
             return 0;
 
         } catch (SQLException e) {
-            logger.severe("ERROR: An error has occurred during image update");
+            logger.severe("ERROR: Failed to add the Image. Exception occurred in ImageDAO.addImage");
             e.printStackTrace();
+            return 2;
         }
-            return 1;
     }
 }
 

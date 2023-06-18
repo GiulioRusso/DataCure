@@ -54,6 +54,9 @@
     </div>
         <s:submit value="Submit"/>
     </s:form>
+
+    <s:actionerror />
+
 </div>
 </body>
 </html>

@@ -19,7 +19,7 @@ public class DisplayImageAction extends ActionSupport {
     public String execute() {
 
         // Identify image path
-        imgPath = "resources\\database-images\\" + ID;
+        imgPath = "resources/database-images/" + ID;
 
         return "success";
     }
