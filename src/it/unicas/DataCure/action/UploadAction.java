@@ -20,15 +20,10 @@ public class UploadAction extends ActionSupport {
     public String execute() throws IOException {
 
         // Specify the path to save the uploaded image
-        String databasePath = "C:\\Users\\gianf\\IdeaProjects\\DataCure\\web\\resources\\database-images";
-
-        // Extract the original file name and extension from the uploaded file
-        // Generate a unique filename for the uploaded image
-        //String targetFileName = UUID.randomUUID().toString() + "_" + imageFileFileName;
-        // genera nomi unici + nome file origniale. é utile? secondo me no se lo mettiamo uno può caricare due volte lo stesso file
-        String targetFileName = imageFileFileName;
+        String databasePath = "/Users/giuliorusso/Library/Mobile Documents/com~apple~CloudDocs/Documents/Istruzione/Universita/Magistrale/Distributed Programming/Progetto/DataCure/web/resources/database-images";
 
         // Create a File object representing the target file
+        String targetFileName = imageFileFileName;
         File targetFile = new File(databasePath, targetFileName);
 
         // Call the addImage method to save the image details in the database

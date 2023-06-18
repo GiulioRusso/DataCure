@@ -26,7 +26,7 @@ public class AddAction extends ActionSupport {
 
 		String statusCode = "";
 		// Add the new user to the database
-		int userAdded = LoginDAO.addUser(userID, userPassword);
+		int userAdded = LoginDAO.addUser(new Login(userID, userPassword));
 
 		if (userAdded == 0) {
 			addMessage = "MESSAGE: User added successfully!";

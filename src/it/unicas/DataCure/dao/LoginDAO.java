@@ -73,20 +73,17 @@ public class LoginDAO {
 	/**
 	 * Adds a new user to the database.
 	 *
-	 * @param userID       The ID of the user.
-	 * @param userPassword The password of the user.
-	 * @return 0 if the user is added successfully, 1 if the ID is invalid, 2 if the password is empty or null,
-	 *         3 if the user already exists, or 4 if an exception occurs.
+	 * DA RIFARE
 	 */
-	public static int addUser(String userID, String userPassword) {
+	public static int addUser(Login userDetails) {
 		// Check if the userID meets the required conditions
-		if (!(userID.startsWith("D") || userID.startsWith("O"))) {
+		if (!(userDetails.getID().startsWith("D") || userDetails.getID().startsWith("O"))) {
 			logger.severe("ERROR: Invalid ID. It must start by 'D' or 'O'. User cannot be added.");
 			return 1;
 		}
 
 		// Check if the userPassword is empty or null
-		if (userPassword == null || userPassword.isEmpty()) {
+		if (userDetails.getPassword() == null || userDetails.getPassword().isEmpty()) {
 			logger.severe("ERROR: Invalid Password. Password can't be null. User cannot be added.");
 			return 2;
 		}
@@ -96,19 +93,19 @@ public class LoginDAO {
 			 PreparedStatement insertStmt = conn.prepareStatement("INSERT INTO login (idlogin, password) VALUES (?, ?)")) {
 
 			// Set the userID parameter for the checkStmt
-			checkStmt.setString(1, userID);
+			checkStmt.setString(1, userDetails.getID());
 
 			// Execute the query to check if the user already exists
 			ResultSet resultSet = checkStmt.executeQuery();
 
 			if (resultSet.next()) {
 				// User already exists in the database
-				logger.severe("ERROR: User with ID '" + userID + "' already exists! Update or Delete the existing one before.");
+				logger.severe("ERROR: User with ID '" + userDetails.getID() + "' already exists! Update or Delete the existing one before.");
 				return 3;
 			} else {
 				// User does not exist, insert the new user
-				insertStmt.setString(1, userID);
-				insertStmt.setString(2, userPassword);
+				insertStmt.setString(1, userDetails.getID());
+				insertStmt.setString(2, userDetails.getPassword());
 				insertStmt.executeUpdate();
 				System.out.println("MESSAGE: User added successfully!");
 				return 0;
@@ -170,15 +167,15 @@ public class LoginDAO {
 	 * @return 0 if the user password is updated successfully, 1 if the password is empty or null,
 	 *         2 if the user does not exist, or 3 if an exception occurs.
 	 */
-	public static int updateUser(String userID, String newPassword) {
+	public static int updateUser(Login userDetails) {
 		// Check if the newPassword is empty or null
-		if (newPassword == null || newPassword.isEmpty()) {
+		if (userDetails.getPassword() == null || userDetails.getPassword().isEmpty()) {
 			logger.severe("ERROR: Invalid Password. Password can't be null. User cannot be updated.");
 			return 1;
 		}
 
 		// Check if the userID is "admin"
-		if (userID.equals("admin")) {
+		if (userDetails.getID().equals("admin")) {
 			logger.severe("ERROR: Password change not allowed for user 'admin'. User cannot be updated.");
 			return 3;
 		}
@@ -188,21 +185,21 @@ public class LoginDAO {
 			 PreparedStatement updateStmt = conn.prepareStatement("UPDATE login SET password = ? WHERE idlogin = ?")) {
 
 			// Set the userID parameter for the checkStmt
-			checkStmt.setString(1, userID);
+			checkStmt.setString(1, userDetails.getID());
 
 			// Execute the query to check if the user exists
 			ResultSet resultSet = checkStmt.executeQuery();
 
 			if (resultSet.next()) {
 				// User exists, update the password
-				updateStmt.setString(1, newPassword);
-				updateStmt.setString(2, userID);
+				updateStmt.setString(1, userDetails.getPassword());
+				updateStmt.setString(2, userDetails.getID());
 				updateStmt.executeUpdate();
 				System.out.println("MESSAGE: User password updated successfully!");
 				return 0;
 			} else {
 				// User does not exist
-				logger.severe("ERROR: User with ID '" + userID + "' does not exist!");
+				logger.severe("ERROR: User with ID '" + userDetails.getID() + "' does not exist!");
 				return 2;
 			}
 		} catch (SQLException e) {

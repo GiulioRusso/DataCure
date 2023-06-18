@@ -87,8 +87,8 @@
 		<div class="form-container">
 			<h2>Login to DataCure</h2>
 			<s:form action="loginAction">
-				<s:textfield name="ID" label="ID" />
-				<s:password name="password" label="Password" />
+				<s:textfield name="userID" label="ID" />
+				<s:password name="userPassword" label="Password" />
 				<s:submit value="Login" />
 			</s:form>
 

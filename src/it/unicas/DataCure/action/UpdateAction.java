@@ -27,7 +27,7 @@ public class UpdateAction extends ActionSupport {
 
 		String statusCode = "";
 		// Update the user's password
-		int userUpdated = LoginDAO.updateUser(userID, userPassword);
+		int userUpdated = LoginDAO.updateUser(new Login (userID, userPassword));
 
 		if (userUpdated == 0) {
 			updateMessage = "MESSAGE: User password updated successfully!";

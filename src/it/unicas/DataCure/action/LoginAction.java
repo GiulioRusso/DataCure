@@ -21,12 +21,12 @@ public class LoginAction extends ActionSupport {
 	/**
 	 * The ID or username entered by the user.
 	 */
-	private String ID;
+	private String userID;
 
 	/**
 	 * The password entered by the user.
 	 */
-	private String password;
+	private String userPassword;
 
 	/**
 	 * Executes the login action and determines the status code based on the user's credentials.
@@ -36,15 +36,15 @@ public class LoginAction extends ActionSupport {
 	public String execute() {
 		String statusCode;
 
-		boolean isUserValid = LoginDAO.isUserValid(new Login(ID, password));
-		ServletActionContext.getRequest().getSession().setAttribute("loggedinUser", ID);
+		boolean isUserValid = LoginDAO.isUserValid(new Login(userID, userPassword));
+		ServletActionContext.getRequest().getSession().setAttribute("loggedinUser", userID);
 
 		if (isUserValid) {
-			if (ID.startsWith("D")) {
+			if (userID.startsWith("D")) {
 				statusCode = "doctor";
-			} else if (ID.startsWith("O")) {
+			} else if (userID.startsWith("O")) {
 				statusCode = "operator";
-			} else if (ID.equals("admin")) {
+			} else if (userID.equals("admin")) {
 				statusCode = "admin";
 			} else {
 				statusCode = "input";
@@ -66,17 +66,17 @@ public class LoginAction extends ActionSupport {
 	 *
 	 * @return The ID or username entered by the user
 	 */
-	public String getID() {
-		return ID;
+	public String getUserID() {
+		return userID;
 	}
 
 	/**
 	 * Sets the ID or username entered by the user.
 	 *
-	 * @param ID The ID or username to be set
+	 * @param userID The ID or username to be set
 	 */
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setUserID(String userID) {
+		this.userID = userID;
 	}
 
 	/**
@@ -84,17 +84,17 @@ public class LoginAction extends ActionSupport {
 	 *
 	 * @return The password entered by the user
 	 */
-	public String getPassword() {
-		return password;
+	public String getUserPassword() {
+		return userPassword;
 	}
 
 	/**
 	 * Sets the password entered by the user.
 	 *
-	 * @param password The password to be set
+	 * @param userPassword The password to be set
 	 */
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
 	}
 }
 
