@@ -36,11 +36,11 @@
     }
 %>
 <div class="container">
-    <s:form action="updateImageAction">
     <div class="left-column">
         <img src= <s:property value="imgPath"/>>
     </div>
     <div class="right-column">
+        <s:form action="updateImageAction">
             <s:property value="ID"/>
             <s:hidden value="%{ID}" name="ID"/>
             <br>
@@ -51,12 +51,14 @@
             <s:textfield disabled="true" label="Operator Description" name="oDesc"/>
             <br>
             <s:textfield label="Doctor Description" name="dDesc"/>
+            <s:submit value="Submit"/>
+        </s:form>
+        <s:form action="welcomeDoctorAction">
+            <s:submit value="Cancel"/>
+        </s:form>
     </div>
-        <s:submit value="Submit"/>
-    </s:form>
 
     <s:actionerror />
-
 </div>
 </body>
 </html>

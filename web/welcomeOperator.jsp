@@ -14,13 +14,9 @@
         }
 
         function clearFileInput() {
-            var fileInput = document.getElementById("imageFile");
-            var fileName = document.getElementById("fileName");
-            var operatorDescription = document.getElementById("operatorDescription");
-
-            fileInput.value = "";
-            fileName.textContent = "";
-            operatorDescription.value = "";
+            document.getElementById("imageFile").value ="";
+            document.getElementById("fileName").textContent="";
+            document.getElementById("operatorDescription").value = "";
         }
     </script>
 </head>

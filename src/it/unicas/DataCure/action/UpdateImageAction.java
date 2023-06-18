@@ -23,7 +23,7 @@ public class UpdateImageAction extends ActionSupport {
     public String execute() {
 
         String statusCode = "";
-        ServletActionContext.getRequest().getSession().setAttribute("updateImage", ID);
+
         System.out.println(ID);
         System.out.println(label);
         System.out.println(dDesc);
