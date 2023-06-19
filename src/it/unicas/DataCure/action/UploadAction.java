@@ -2,14 +2,17 @@ package it.unicas.DataCure.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import it.unicas.DataCure.dao.ImageDAO;
 import it.unicas.DataCure.dbutil.Configuration;
 import org.apache.commons.io.FileUtils;
+import org.apache.struts2.ServletActionContext;
 
 public class UploadAction extends ActionSupport {
 
@@ -41,6 +44,13 @@ public class UploadAction extends ActionSupport {
             // Copy the uploaded file to the target location only if the addImage function return 0
             FileUtils.copyFile(imageFile, targetFile);
             uploadMessage = "MESSAGE: Image added successfully!";
+            try (FileWriter writer = new FileWriter(Configuration.getPathVariable("log_path"), true)) {
+                writer.write(LocalDateTime.now() + " " +
+                        ServletActionContext.getRequest().getSession().getAttribute("loggedinUser") +
+                        " ----- " + imageFileFileName + " has been uploaded.\n\n");
+            } catch (IOException e) {
+                System.out.println("An error occurred while writing to the file: " + e.getMessage());
+            }
             statusCode = "success"; // Return a success result
         } else if (addImageResult == 1) {
             uploadMessage = "ERROR: Image named '" + targetFileName + "' already exists.";

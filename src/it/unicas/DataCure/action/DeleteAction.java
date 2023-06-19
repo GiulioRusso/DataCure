@@ -2,8 +2,13 @@ package it.unicas.DataCure.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import it.unicas.DataCure.dao.LoginDAO;
+import it.unicas.DataCure.dbutil.Configuration;
 import it.unicas.DataCure.pojo.Login;
+import org.apache.struts2.ServletActionContext;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -30,6 +35,13 @@ public class DeleteAction extends ActionSupport {
 
 		if (userDeleted) {
 			deleteMessage = "MESSAGE: User deleted successfully!";
+			try (FileWriter writer = new FileWriter(Configuration.getPathVariable("log_path"), true)) {
+				writer.write(LocalDateTime.now() + " " +
+						ServletActionContext.getRequest().getSession().getAttribute("loggedinUser") +
+						" ----- " + userID + " has been deleted.\n\n");
+			} catch (IOException e) {
+				System.out.println("An error occurred while writing to the file: " + e.getMessage());
+			}
 			statusCode = "success";
 		} else {
 			if (userID.equals("admin")) {

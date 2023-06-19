@@ -29,12 +29,6 @@ public class WelcomeAdminAction extends ActionSupport{
 	public String execute() {
 		initializeUsers();
 
-		try (FileWriter writer = new FileWriter(Configuration.getPathVariable("log_path"))) {
-			writer.write(LocalDate.now() + " " + userID + " has logged in DataCure");
-		} catch (IOException e) {
-			System.out.println("An error occurred while writing to the file: " + e.getMessage());
-		}
-
 		return "success";
 	}
 

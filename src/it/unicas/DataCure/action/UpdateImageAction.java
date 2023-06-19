@@ -3,9 +3,13 @@ package it.unicas.DataCure.action;
 import com.opensymphony.xwork2.ActionSupport;
 import it.unicas.DataCure.dao.ImageDAO;
 import it.unicas.DataCure.dao.LoginDAO;
+import it.unicas.DataCure.dbutil.Configuration;
 import it.unicas.DataCure.pojo.Login;
 import org.apache.struts2.ServletActionContext;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -30,6 +34,13 @@ public class UpdateImageAction extends ActionSupport {
         int check= ImageDAO.updateImage(ID, label, dDesc);
         if(check == 0) {
             updateMessage = "MESSAGE: Image updated successfully!";
+            try (FileWriter writer = new FileWriter(Configuration.getPathVariable("log_path"), true)) {
+                writer.write(LocalDateTime.now() + " " +
+                        ServletActionContext.getRequest().getSession().getAttribute("loggedinUser") +
+                        " ----- " + "Image " + ID + " has been updated.\n\n");
+            } catch (IOException e) {
+                System.out.println("An error occurred while writing to the file: " + e.getMessage());
+            }
             logger.severe(updateMessage);
             addActionError(updateMessage);
             statusCode = "success";

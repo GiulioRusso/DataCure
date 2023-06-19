@@ -1,10 +1,16 @@
 package it.unicas.DataCure.action;
 
 import it.unicas.DataCure.dao.LoginDAO;
+import it.unicas.DataCure.dbutil.Configuration;
 import it.unicas.DataCure.pojo.Login;
 
 import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
 /**
@@ -42,10 +48,25 @@ public class LoginAction extends ActionSupport {
 		if (isUserValid) {
 			if (userID.startsWith("D")) {
 				statusCode = "doctor";
+				try (FileWriter writer = new FileWriter(Configuration.getPathVariable("log_path"), true)) {
+					writer.write(LocalDateTime.now() + " " + userID + " (Doctor) has logged in DataCure.\n\n");
+				} catch (IOException e) {
+					System.out.println("An error occurred while writing to the file: " + e.getMessage());
+				}
 			} else if (userID.startsWith("O")) {
 				statusCode = "operator";
+				try (FileWriter writer = new FileWriter(Configuration.getPathVariable("log_path"), true)) {
+					writer.write(LocalDateTime.now() + " " + userID + " (Operator) has logged in DataCure.\n\n");
+				} catch (IOException e) {
+					System.out.println("An error occurred while writing to the file: " + e.getMessage());
+				}
 			} else if (userID.equals("admin")) {
 				statusCode = "admin";
+				try (FileWriter writer = new FileWriter(Configuration.getPathVariable("log_path"), true)) {
+					writer.write(LocalDateTime.now() + " " + userID + " (Admin) has logged in DataCure.\n\n");
+				} catch (IOException e) {
+					System.out.println("An error occurred while writing to the file: " + e.getMessage());
+				}
 			} else {
 				statusCode = "input";
 				logger.severe("ERROR: The user is registered into the database but does not respect the ID rules. Login failed. Call support to solve the problem");
