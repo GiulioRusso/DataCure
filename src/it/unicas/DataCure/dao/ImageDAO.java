@@ -28,6 +28,12 @@ public class ImageDAO {
             return 3;
         }
 
+        // Check if the imageName contains spaces
+        if (imageName.contains(" ")) {
+            logger.severe("ERROR: Invalid image name. Image name cannot contain spaces. Image cannot be added.");
+            return 4;
+        }
+
         try (Connection conn = DBUtil.getConnection();
              PreparedStatement insertStmt = conn.prepareStatement("INSERT INTO images (idimages, upload_date, labeled, operator_description, doctor_description) " +
                      "VALUES (?, ?, ?, ?, ?)");
@@ -55,7 +61,7 @@ public class ImageDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             logger.severe("ERROR: Failed to add the Image. Exeption occured in ImageDAO.addImage");
-            return 4;
+            return 5;
         }
     }
 

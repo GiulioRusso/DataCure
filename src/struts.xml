@@ -6,10 +6,17 @@
 <struts>
 	<package name="DataCureApp" extends="struts-default">
 		<interceptors>
+
 			<interceptor class="it.unicas.DataCure.interceptors.LoginInterceptor"
 				name="loginInterceptor" />
 			<interceptor-stack name="loginStack">
 				<interceptor-ref name="loginInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+
+			<interceptor class="it.unicas.DataCure.interceptors.ImageInterceptor" name="imageInterceptor" />
+			<interceptor-stack name="imageStack">
+				<interceptor-ref name="imageInterceptor" />
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
@@ -55,6 +62,7 @@
 		<action name="uploadAction" class="it.unicas.DataCure.action.UploadAction">
 			<result name="success">/welcomeOperator.jsp</result>
 			<result name="error">/welcomeOperator.jsp</result>
+			<result name="input">/welcomeOperator.jsp</result> <!-- In case images > 2MB uploaded copyFiles crash -->
 		</action>
 
 		<action name="welcomeDoctorAction" class="it.unicas.DataCure.action.WelcomeDoctorAction">
@@ -63,11 +71,13 @@
 		</action>
 
 		<action name="displayImageAction" class="it.unicas.DataCure.action.DisplayImageAction">
+			<interceptor-ref name="imageStack" />
 			<result name="success">/displayImage.jsp</result>
 			<result name="error">/welcomeDoctor.jsp</result>
 		</action>
 
 		<action name="updateImageAction" class="it.unicas.DataCure.action.UpdateImageAction">
+			<interceptor-ref name="imageStack" />
 			<result name="success" type="redirect">welcomeDoctorAction</result>
 			<result name="error" type="redirect">displayImageAction</result>
 		</action>

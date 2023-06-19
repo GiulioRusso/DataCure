@@ -8,6 +8,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.UUID;
 
 import it.unicas.DataCure.dao.ImageDAO;
+import it.unicas.DataCure.dbutil.Configuration;
 import org.apache.commons.io.FileUtils;
 
 public class UploadAction extends ActionSupport {
@@ -20,7 +21,7 @@ public class UploadAction extends ActionSupport {
     public String execute() throws IOException {
 
         // Specify the path to save the uploaded image
-        String databasePath = "C:\\Users\\gianf\\IdeaProjects\\DataCure\\web\\resources\\database-images";
+        String databasePath = Configuration.getPathVariable("database_path");
 
         // Create a File object representing the target file
         String targetFileName = imageFileFileName;
@@ -42,9 +43,12 @@ public class UploadAction extends ActionSupport {
             uploadMessage = "ERROR: Invalid extension. Image accepted in .jpg/.png/.tiff. Image cannot be added.";
             statusCode = "error";
         } else if (addImageResult == 3) {
-            uploadMessage = "ERROR: Invalid description. Description can't be empty. Image cannot be added.";
+            uploadMessage = "ERROR: Invalid description. Description can't be null. Image cannot be added.";
             statusCode = "error";
         } else if (addImageResult == 4) {
+            uploadMessage = "ERROR: Invalid image name. Image name cannot contain spaces. Image cannot be added.";
+            statusCode = "error";
+        } else if (addImageResult == 5) {
             uploadMessage = "ERROR: Failed to add the Image. Exception occurred in ImageDAO.addImage";
             statusCode = "error";
         }

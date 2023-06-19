@@ -9,22 +9,22 @@ public class DBUtil {
 	/**
 	 * The host of the MySQL database.
 	 */
-	private static final String HOST = "localhost";
+	private static final String HOST = Configuration.getPathVariable("host");
 
 	/**
 	 * The schema (database name) of the MySQL database.
 	 */
-	private static final String SCHEMA = "DataCure";
+	private static final String SCHEMA = Configuration.getPathVariable("schema");
 
 	/**
 	 * The username for connecting to the MySQL database.
 	 */
-	private static final String USER = "root";
+	private static final String USER = Configuration.getPathVariable("user");
 
 	/**
 	 * The password for connecting to the MySQL database.
 	 */
-	private static final String PASSWORD = "password";
+	private static final String PASSWORD = Configuration.getPathVariable("password");
 
 	/**
 	 * Establishes a connection to the MySQL database based on the parameters specified in the DBUtil class.

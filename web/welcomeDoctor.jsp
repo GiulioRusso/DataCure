@@ -46,7 +46,7 @@
             <tr>
                 <th>Image ID</th>
                 <th>Upload Date</th>
-                <th>Label</th>
+                <th>Labeled</th>
                 <th>Operator Description</th>
                 <th>Doctor Description</th>
             </tr>

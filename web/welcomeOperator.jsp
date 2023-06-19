@@ -5,20 +5,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome Operator</title>
-    <script>
-        function displayFileName() {
-            var fileInput = document.getElementById("imageFile");
-            var fileName = document.getElementById("fileName");
-
-            fileName.textContent = fileInput.files[0].name;
-        }
-
-        function clearFileInput() {
-            document.getElementById("imageFile").value ="";
-            document.getElementById("fileName").textContent="";
-            document.getElementById("operatorDescription").value = "";
-        }
-    </script>
 </head>
 <body>
 <%
@@ -35,12 +21,13 @@
         </s:form>
     </div>
     <div class="right-column">
+
         <h2>Upload Image</h2>
-        <s:form action="uploadAction" method="post" enctype="multipart/form-data">
+        <s:form id="uploadForm" action="uploadAction" method="post" enctype="multipart/form-data">
             <s:file label="Upload Image:" name="imageFile" id="imageFile" onchange="displayFileName()"/>
             <s:property value="fileName"/><br/>
 
-            <s:textfield label="Operator Description:" name="operatorDescription" id="operatorDescription"/><br/>
+            <s:textfield value="" label="Operator Description:" name="operatorDescription" id="operatorDescription"/><br/>
 
             <s:submit value="Save Data"/>
             <button type="button" onclick="clearFileInput()">Clear File</button>
@@ -51,5 +38,17 @@
 
     </div>
 </div>
+<script>
+    function displayFileName() {
+        var fileInput = document.getElementById("imageFile");
+        var fileName = document.getElementById("fileName");
+
+        fileName.textContent = fileInput.files[0].name;
+    }
+
+    function clearFileInput() {
+        document.getElementById("uploadForm").reset();
+    }
+</script>
 </body>
 </html>

@@ -6,68 +6,7 @@
 <html>
 <head>
 	<title>Login to DataCure</title>
-	<style>
-		html, body {
-			height: 100%;
-			margin: 0;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-
-		.container {
-			display: flex;
-			height: 100%;
-			width: 100%;
-		}
-
-		.left-column {
-			flex: 1;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			flex-direction: column;
-			text-align: center;
-		}
-
-		.right-column {
-			flex: 1;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			text-align: center;
-		}
-
-		.image {
-			max-width: 300px;
-			max-height: 300px;
-			width: 100%;
-			height: 100%;
-			object-fit: contain;
-			margin-bottom: 20px;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			text-align: center;
-		}
-
-		.description {
-			margin-bottom: 20px;
-		}
-
-		.form-container {
-			width: 300px;
-			text-align: center;
-		}
-
-		.form-container input[type="text"],
-		.form-container input[type="password"] {
-			width: 100%;
-			margin-bottom: 10px;
-		}
-	</style>
-
-
+	<link rel="stylesheet" type="text/css" href="css/login.css">
 </head>
 <body>
 <div class="container">

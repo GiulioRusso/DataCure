@@ -37,7 +37,7 @@
 %>
 <div class="container">
     <div class="left-column">
-        <img src= <s:property value="imgPath"/>>
+        <img src= "<s:property value="imgPath"/>">
     </div>
     <div class="right-column">
         <s:form action="updateImageAction">

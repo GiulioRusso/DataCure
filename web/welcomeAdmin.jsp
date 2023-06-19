@@ -75,6 +75,7 @@
 </div>
 
 <script>
+    <!-- enhances the functionality of the form by dynamically changing the form's action attribute based on the button clicked -->
     window.onload = function() {
         var form = document.getElementById('Form');
         var addButton = document.getElementById('addButton');

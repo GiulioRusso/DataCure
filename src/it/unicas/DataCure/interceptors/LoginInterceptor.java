@@ -1,5 +1,6 @@
 package it.unicas.DataCure.interceptors;
 
+import it.unicas.DataCure.dbutil.Configuration;
 import it.unicas.DataCure.dbutil.DataLoader;
 import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
@@ -20,7 +21,7 @@ public class LoginInterceptor implements Interceptor {
 		System.out.println("MESSAGE: init() called");
 
 		// Load data into the database
-		DataLoader.loadDataFromFile("C:\\Users\\gianf\\IdeaProjects\\DataCure\\src\\it\\unicas\\DataCure\\dbutil\\Login.txt","login");
+		DataLoader.loadDataFromFile(Configuration.getPathVariable("login_init"),"login");
 	}
 
 	@Override

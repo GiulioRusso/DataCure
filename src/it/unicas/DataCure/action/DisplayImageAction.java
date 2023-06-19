@@ -1,6 +1,7 @@
 package it.unicas.DataCure.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import it.unicas.DataCure.dbutil.Configuration;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -19,7 +20,7 @@ public class DisplayImageAction extends ActionSupport {
     public String execute() {
 
         // Identify image path
-        imgPath = "resources/database-images/" + ID;
+        imgPath = Configuration.getPathVariable("relative_database_path") + ID;
 
         return "success";
     }
