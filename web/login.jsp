@@ -16,7 +16,7 @@
 			<img src="resources/app-images/logo.png" alt="DataCure Logo" width = "300" height = "300">
 			<div class="description">
 				<h3>Welcome to DataCure!</h3>
-				<p>bla bla bla description of datacure</p>
+				<p>DataCure aims to create a system for collecting clinical data uploaded by medical operators to build a structured database for scientific studies</p>
 				<p>Please enter your credentials to log in.</p>
 			</div>
 		</div>

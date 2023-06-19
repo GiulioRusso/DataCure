@@ -32,6 +32,7 @@ public class UpdateImageAction extends ActionSupport {
         System.out.println(label);
         System.out.println(dDesc);
         int check= ImageDAO.updateImage(ID, label, dDesc);
+
         if(check == 0) {
             updateMessage = "MESSAGE: Image updated successfully!";
             try (FileWriter writer = new FileWriter(Configuration.getPathVariable("log_path"), true)) {
