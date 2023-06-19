@@ -20,16 +20,22 @@ public class UploadAction extends ActionSupport {
 
     public String execute() throws IOException {
 
+        String statusCode = "";
         // Specify the path to save the uploaded image
         String databasePath = Configuration.getPathVariable("database_path");
-
+        if(imageFile == null) {
+            uploadMessage = "ERROR: No file selected.";
+            // Print message on the welcomeOperator.jsp
+            addActionError(uploadMessage);
+            statusCode = "error";
+            return statusCode;
+        }
         // Create a File object representing the target file
         String targetFileName = imageFileFileName;
         File targetFile = new File(databasePath, targetFileName);
 
         // Call the addImage method to save the image details in the database
         int addImageResult = ImageDAO.addImage(targetFileName, getOperatorDescription());
-        String statusCode = "";
 
         if (addImageResult == 0) {
             // Copy the uploaded file to the target location only if the addImage function return 0
