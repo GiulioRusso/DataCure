@@ -36,9 +36,6 @@
         <form action="logoutAction" method="post">
             <button type="submit">Logout</button>
         </form>
-
-        <!-- Show MESSAGE/ERROR -->
-        <s:actionerror />
     </div>
     <div class="right-column">
         <table>
@@ -67,6 +64,9 @@
                         <s:hidden value="%{doctorDescription}" name="dDesc"/>
                         <s:submit value="Edit"/>
                     </s:form>
+
+                    <!-- Show MESSAGE/ERROR -->
+                    <s:actionerror />
                 </tr>
             </s:iterator>
             </tbody>

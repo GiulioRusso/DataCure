@@ -40,7 +40,7 @@
         <img src= "<s:property value="imgPath"/>">
     </div>
     <div class="right-column">
-        <s:form action="updateImageAction">
+        <s:form action="updateImageAction" onsubmit="return validateForm()">
             <s:property value="ID"/>
             <s:hidden value="%{ID}" name="ID"/>
             <br>
@@ -50,7 +50,7 @@
             <br>
             <s:textfield disabled="true" label="Operator Description" name="oDesc"/>
             <br>
-            <s:textfield label="Doctor Description" name="dDesc"/>
+            <s:textfield label="Doctor Description" name="dDesc" id="doctorDescription"/>
             <s:submit value="Submit"/>
         </s:form>
         <s:form action="welcomeDoctorAction">
@@ -58,7 +58,16 @@
         </s:form>
     </div>
 
-    <s:actionerror />
 </div>
+<script type="text/javascript">
+    function validateForm() {
+        var doctorDescription = document.getElementById('doctorDescription').value;
+        if (doctorDescription.trim() === '') {
+            alert('ERROR: Doctor Description cannot be empty.');
+            return false;
+        }
+        return true;
+    }
+</script>
 </body>
 </html>
