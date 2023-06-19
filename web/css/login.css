@@ -51,9 +51,11 @@ body, html {
 .right-column {
     flex: 1;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-left: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .form-container {
@@ -80,12 +82,13 @@ body, html {
     border-radius: 5px;
 }
 
-.form-container .action-error {
+.action-error {
     font-family: Menlo, monospace;
     color: black;
     font-size: 14px;
     margin-top: 10px;
     text-align: center;
+    align-items: center;
 }
 
 .form-container input[type="submit"] {
@@ -101,4 +104,16 @@ body, html {
 .form-container input[type="submit"]:hover {
     background-color: black;
     color: white;
+}
+
+.mega-container{
+    flex-direction: column;
+}
+
+.about-description{
+    font-family: Menlo, monospace;
+    color: gray;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
 }
