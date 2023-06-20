@@ -4,15 +4,10 @@ package it.unicas.DataCure.pojo;
  * The Login class represents the login information of a user.
  */
 public class Login {
-	/**
-	 * The ID or username of the user.
-	 */
-	String ID;
 
-	/**
-	 * The password of the user.
-	 */
-	String password;
+	String ID;	// The ID or username of the user.
+
+	String password;	// The password of the user.
 
 	/**
 	 * Constructs an empty Login object.

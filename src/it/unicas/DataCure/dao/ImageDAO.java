@@ -9,10 +9,20 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
+/**
+ * The ImageDAO class is a data access object that handles the database operations for the Image entity.
+ */
 public class ImageDAO {
 
-    private static final Logger logger = Logger.getLogger(LoginAction.class.getName());
+    private static final Logger logger = Logger.getLogger(LoginAction.class.getName()); // logger instance for logging messages.
 
+    /**
+     * Adds an image to the database.
+     *
+     * @param imageName             The name of the image to add.
+     * @param operatorDescription   The operator description of the image.
+     * @return The result code indicating the success or failure of the image addition.
+     */
     public static int addImage(String imageName, String operatorDescription) {
         // Check if the imageName ends with a valid extension
         if (!(imageName.endsWith(".jpg") || imageName.endsWith(".png") || imageName.endsWith(".tiff"))) {
@@ -63,6 +73,11 @@ public class ImageDAO {
         }
     }
 
+    /**
+     * Retrieves all images from the database.
+     *
+     * @return The list of all images in the database.
+     */
     public static List<Image> getAllImages() {
 
         // Retrieve every image in the database
@@ -92,8 +107,17 @@ public class ImageDAO {
         return imageList;
     }
 
+    /**
+     * Updates the image with the given ID in the database.
+     *
+     * @param id    The ID of the image to update.
+     * @param label The labeled status of the image.
+     * @param dDesc The doctor description of the image.
+     * @return The result code indicating the success or failure of the image update.
+     */
     public static int updateImage(String id, boolean label, String dDesc) {
 
+        // Check if doctor description is empty
         if (dDesc.isEmpty()) {
             logger.severe("ERROR: Invalid description. Description can't be empty. Image cannot be updated.");
             return 1;

@@ -1,9 +1,11 @@
 package it.unicas.DataCure.pojo;
 
-import java.io.File;
 import java.sql.Timestamp;
 import java.util.Date;
 
+/**
+ * The Image class represents an image entity in the system.
+ */
 public class Image {
 
     private String idImage;

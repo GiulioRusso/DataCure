@@ -14,10 +14,7 @@ import java.util.logging.Logger;
  */
 public class LoginDAO {
 
-	/**
-	 * The logger instance for logging messages.
-	 */
-	private static final Logger logger = Logger.getLogger(LoginAction.class.getName());
+	private static final Logger logger = Logger.getLogger(LoginAction.class.getName());	// logger instance for logging messages.
 
 	/**
 	 * Checks if the user details provided are valid by querying the login table in the database.
@@ -73,7 +70,8 @@ public class LoginDAO {
 	/**
 	 * Adds a new user to the database.
 	 *
-	 * DA RIFARE
+	 * @param userDetails The login details of the user to add.
+	 * @return 0 if the user is added successfully, an error code otherwise.
 	 */
 	public static int addUser(Login userDetails) {
 		// Check if the userID meets the required conditions
@@ -162,10 +160,8 @@ public class LoginDAO {
 	/**
 	 * Updates the password of a user in the database.
 	 *
-	 * @param userID      The ID of the user.
-	 * @param newPassword The new password for the user.
-	 * @return 0 if the user password is updated successfully, 1 if the password is empty or null,
-	 *         2 if the user does not exist, or 3 if an exception occurs.
+	 * @param userDetails The login details of the user.
+	 * @return 0 if the user password is updated successfully, an error code otherwise.
 	 */
 	public static int updateUser(Login userDetails) {
 		// Check if the newPassword is empty or null

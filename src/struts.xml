@@ -7,6 +7,7 @@
 	<package name="DataCureApp" extends="struts-default">
 		<interceptors>
 
+			<!-- Login interceptor to keep the user session -->
 			<interceptor class="it.unicas.DataCure.interceptors.LoginInterceptor"
 				name="loginInterceptor" />
 			<interceptor-stack name="loginStack">
