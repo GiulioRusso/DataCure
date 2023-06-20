@@ -8,6 +8,7 @@
 	<title>Login to DataCure</title>
 	<link rel="stylesheet" type="text/css" href="css/login.css">
 </head>
+
 <body>
 <div class="mega-container">
 	<div class="container">
