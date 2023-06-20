@@ -28,6 +28,7 @@
         </table>
     </div>
     <div class="container">
+        <h2> Uploading Form </h2>
         <s:form id="uploadForm" cssClass="form-container" action="uploadAction" method="post" enctype="multipart/form-data">
             <s:file cssClass="fileselect" label="Upload Image" name="imageFile" id="imageFile" onchange="displayFileName()"/>
             <s:property value="fileName"/><br/>

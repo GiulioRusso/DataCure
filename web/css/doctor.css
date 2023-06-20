@@ -17,7 +17,8 @@ body, html {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     font-family: Menlo, monospace;
     padding: 20px;
-
+    align-items: center;
+    justify-content: center;
 }
 
 .container input[type="submit"],

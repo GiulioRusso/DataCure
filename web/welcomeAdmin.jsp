@@ -7,22 +7,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Admin Interface</title>
     <link rel="stylesheet" href="css/admin.css">
-    <style>
-        .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
-        .left-column {
-            flex: 1;
-            margin-right: 20px;
-        }
-
-        .right-column {
-            flex: 1;
-        }
-    </style>
 </head>
 <body>
 <%
@@ -46,6 +30,7 @@
     </div>
     <div class="container">
         <div class="left-column">
+            <h2> Users Form </h2>
             <div class="form-container">
             <s:form id="Form" method="POST">
                 <s:textfield id="userID" name="userID" label="ID"/>

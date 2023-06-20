@@ -52,15 +52,6 @@ body, html {
     color: white;
 }
 
-.left-column .description {
-    font-family: Menlo, monospace;
-    color: black;
-    margin-top: 20px;
-    text-align: center;
-    justify-content: center;
-    overflow-wrap: break-word;
-}
-
 .right-column {
     flex: 1;
     display: flex;
@@ -68,15 +59,15 @@ body, html {
     justify-content: center;
     align-items: center;
     padding-left: 15px;
-    padding-right: 15px;
+    padding-right: 35px;
     height: auto;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .form-container {
     text-align: center;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .form-container h2 {

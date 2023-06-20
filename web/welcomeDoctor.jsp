@@ -28,6 +28,7 @@
         </table>
     </div>
     <div class="container">
+        <h2> Images </h2>
         <table>
             <thead>
             <tr>
