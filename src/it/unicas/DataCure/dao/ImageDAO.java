@@ -3,8 +3,6 @@ package it.unicas.DataCure.dao;
 import it.unicas.DataCure.action.LoginAction;
 import it.unicas.DataCure.dbutil.DBUtil;
 import it.unicas.DataCure.pojo.Image;
-import it.unicas.DataCure.pojo.Login;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;

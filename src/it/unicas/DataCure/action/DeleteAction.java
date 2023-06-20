@@ -16,10 +16,9 @@ import java.util.List;
  */
 public class DeleteAction extends ActionSupport {
 
-	private String userID;
-	private String deleteMessage;
-
-	private List<Login> userList; // Add userList attribute
+	private String userID;	// Represents the user ID to be deleted.
+	private String deleteMessage;	// Stores the message indicating the result of deleting the user.
+	private List<Login> userList;	// Stores the login records.
 
 	/**
 	 * Executes the logic for deleting a user from the database.
@@ -30,11 +29,13 @@ public class DeleteAction extends ActionSupport {
 	public String execute() {
 
 		String statusCode = "";
+
 		// Delete the user
 		boolean userDeleted = LoginDAO.deleteUser(userID);
 
 		if (userDeleted) {
 			deleteMessage = "MESSAGE: User deleted successfully!";
+			// Write on log.txt
 			try (FileWriter writer = new FileWriter(Configuration.getPathVariable("log_path"), true)) {
 				writer.write(LocalDateTime.now() + " " +
 						ServletActionContext.getRequest().getSession().getAttribute("loggedinUser") +

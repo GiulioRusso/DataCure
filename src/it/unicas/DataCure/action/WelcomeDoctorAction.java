@@ -2,34 +2,35 @@ package it.unicas.DataCure.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import it.unicas.DataCure.dao.ImageDAO;
-import it.unicas.DataCure.dao.LoginDAO;
-import it.unicas.DataCure.dao.ProductManagementDAO;
 import it.unicas.DataCure.pojo.Image;
-import it.unicas.DataCure.pojo.Login;
-import it.unicas.DataCure.pojo.Product;
-
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.util.Date;
 import java.util.List;
 
+/**
+ * The WelcomeDoctorAction class is an action class that handles the welcome page for the doctor user.
+ * It retrieves the list of images from the database and loads them for display.
+ */
 public class WelcomeDoctorAction extends ActionSupport{
 
+	private List<Image> imageList;	// Stores the list of images.
+
 	/**
-	 * Il dottore dovrebbe vedere tutte le immagini caricate, magari per comodità identificando facilmente quelle già
-	 * viste (es circondate da un rettangolo verde o rosso)
+	 * Loads the list of images by retrieving them from the database.
 	 */
-
-	private List<Image> imageList;
-
 	public void loadImages() {
 		// Retrieve all images
 		imageList = ImageDAO.getAllImages();
 	}
 
+	/**
+	 * Executes the welcome doctor action and loads the list of images.
+	 *
+	 * @return The status code indicating the success of the action.
+	 */
 	public String execute() {
+		// Load all the images into the database
 		loadImages();
+
+		// Check it is not null
 		if(imageList != null)
 			return "success";
 		else {
@@ -38,6 +39,11 @@ public class WelcomeDoctorAction extends ActionSupport{
 		}
 	}
 
+	/**
+	 * Prints the information of the images in the specified list.
+	 *
+	 * @param imageList The list of images to print the information for.
+	 */
 	public void printImagesInfo(List<Image> imageList) {
 
 		for(Image j : imageList){
@@ -49,6 +55,11 @@ public class WelcomeDoctorAction extends ActionSupport{
 		}
 	}
 
+	/**
+	 * Gets the list of images.
+	 *
+	 * @return The list of images.
+	 */
 	public List<Image> getImageList() {
 		return imageList;
 	}

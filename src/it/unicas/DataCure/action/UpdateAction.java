@@ -5,7 +5,6 @@ import it.unicas.DataCure.dao.LoginDAO;
 import it.unicas.DataCure.dbutil.Configuration;
 import it.unicas.DataCure.pojo.Login;
 import org.apache.struts2.ServletActionContext;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -16,10 +15,9 @@ import java.util.List;
  */
 public class UpdateAction extends ActionSupport {
 
-	private String userID;
-	private String userPassword;
-	private String updateMessage;
-
+	private String userID;	// Represents the user ID of the user to update.
+	private String userPassword;	// Represents the updated user passwrod of the user to update.
+	private String updateMessage;	// Stores the message indicating the result of update the user.
 	private List<Login> userList; // Add userList attribute
 
 	/**
@@ -36,6 +34,7 @@ public class UpdateAction extends ActionSupport {
 
 		if (userUpdated == 0) {
 			updateMessage = "MESSAGE: User password updated successfully!";
+			// Write on log.txt
 			try (FileWriter writer = new FileWriter(Configuration.getPathVariable("log_path"), true)) {
 				writer.write(LocalDateTime.now() + " " +
 						ServletActionContext.getRequest().getSession().getAttribute("loggedinUser") +

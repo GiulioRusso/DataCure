@@ -16,11 +16,10 @@ import java.util.List;
  */
 public class AddAction extends ActionSupport {
 
-	private String userID;
-	private String userPassword;
-
-	private String addMessage;
-	private List<Login> userList; // Add userList attribute
+	private String userID;	// Represents the user ID for the new user.
+	private String userPassword;	// Represents the password for the new user.
+	private String addMessage;	// Stores the message indicating the result of adding the user.
+	private List<Login> userList; // Stores the login records.
 
 	/**
 	 * Executes the logic for adding a new user to the database.
@@ -30,11 +29,13 @@ public class AddAction extends ActionSupport {
 	public String execute() {
 
 		String statusCode = "";
+
 		// Add the new user to the database
 		int userAdded = LoginDAO.addUser(new Login(userID, userPassword));
 
 		if (userAdded == 0) {
 			addMessage = "MESSAGE: User added successfully!";
+			// Write on log.txt
 			try (FileWriter writer = new FileWriter(Configuration.getPathVariable("log_path"), true)) {
 				writer.write(LocalDateTime.now() + " " +
 						ServletActionContext.getRequest().getSession().getAttribute("loggedinUser") +
