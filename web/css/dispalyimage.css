@@ -1,0 +1,125 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    height: auto;
+    width: auto;
+    max-width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+
+.left-column {
+    background-color: #fff;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 110%;
+    padding: 40px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    text-align: center;
+    height: inherit;
+}
+
+.buttons-layout {
+    padding-top: 30px;
+    margin: 0 auto;
+}
+
+.button {
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: Menlo, monospace;
+    font-size: 14px;
+}
+
+.button:hover {
+    background-color: black;
+    color: white;
+}
+
+.left-column .description {
+    font-family: Menlo, monospace;
+    color: black;
+    margin-top: 20px;
+    text-align: center;
+    justify-content: center;
+    overflow-wrap: break-word;
+}
+
+.right-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: auto;
+    margin-bottom: 25px;
+}
+
+.form-container {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+    font-family: Menlo, monospace;
+}
+
+.form-container label {
+    font-family: Menlo, monospace;
+}
+
+.form-container input[type="text"] {
+    width: 100%;
+    padding: 4px;
+    margin-bottom: 10px;
+    font-family: Menlo, monospace;
+    border-radius: 5px;
+}
+
+.action-error {
+    font-family: Menlo, monospace;
+    color: black;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+    align-items: center;
+}
+
+.mega-container{
+    flex-direction: column;
+    font-family: Menlo, monospace;
+}
+
+.about-description{
+    font-family: Menlo, monospace;
+    color: gray;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.cell {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}

@@ -18,7 +18,7 @@
         <table>
             <tr>
                 <th><img src="resources/app-images/logo.png" alt="DataCure Logo" width = "50" height = "50"></th>
-                <th><h2>Operator Interface</h2></th>
+                <th><h2>Doctor Interface</h2></th>
                 <th><p>| Logged in as: <s:property value="#session.loggedinUser"/></p></th>
                 <th><s:form action="logoutAction" method="post">
                     <s:submit value="Logout" class="button"/>
@@ -42,6 +42,7 @@
             </thead>
             <tbody id="imageRecords">
             <s:iterator value="imageList">
+                <s:if test="labeled == false">
                 <tr>
                     <td class="cell"><img src="resources/database-images/<s:property value="idImage"/>" width="100" height="100"/></td>
                     <td class="cell"><s:property value="idImage"/></td>
@@ -61,6 +62,7 @@
                     <!-- Show MESSAGE/ERROR -->
                     <s:actionerror />
                 </tr>
+                </s:if>
             </s:iterator>
             </tbody>
         </table>
