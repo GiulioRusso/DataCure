@@ -4,7 +4,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Welcome Operator</title>
+    <title>Operator Interface</title>
+    <link rel="stylesheet" type="text/css" href="css/operator.css">
 </head>
 <body>
 <%
@@ -12,27 +13,33 @@
         response.sendRedirect("login.jsp");
     }
 %>
-<div class="container">
-    <div class="left-column">
-        <h2>Welcome Operator</h2>
-        <p>Logged in as: <s:property value="#session.loggedinUser"/></p>
-        <s:form action="logoutAction" method="post">
-            <s:submit value="Logout"/>
-        </s:form>
+<div class="mega-container">
+    <div>
+        <table>
+            <tr>
+                <th><img src="resources/app-images/logo.png" alt="DataCure Logo" width = "50" height = "50"></th>
+                <th><h2>Operator Interface</h2></th>
+                <th><p>| Logged in as: <s:property value="#session.loggedinUser"/></p></th>
+                <th><s:form action="logoutAction" method="post">
+                    <s:submit value="Logout" class="button"/>
+                </s:form>
+                </th>
+            </tr>
+        </table>
     </div>
-    <div class="right-column">
-
-        <h2>Upload Image</h2>
-        <s:form id="uploadForm" action="uploadAction" method="post" enctype="multipart/form-data">
-            <s:file label="Upload Image:" name="imageFile" id="imageFile" onchange="displayFileName()"/>
+    <div class="container">
+        <s:form id="uploadForm" cssClass="form-container" action="uploadAction" method="post" enctype="multipart/form-data">
+            <s:file cssClass="fileselect" label="Upload Image" name="imageFile" id="imageFile" onchange="displayFileName()"/>
             <s:property value="fileName"/><br/>
 
-            <s:textfield value="" label="Operator Description:" name="operatorDescription" id="operatorDescription"/><br/>
+            <s:textfield value="" cssClass="textfield" label="Operator Description" name="operatorDescription" id="operatorDescription"/><br/>
 
             <s:submit value="Save Data"/>
-            <button type="button" onclick="clearFileInput()">Clear File</button>
         </s:form>
 
+        <div>
+            <button type="button" class="button" onclick="clearFileInput()">Clear File</button>
+        </div>
         <!-- Show MESSAGE/ERROR -->
         <s:actionerror />
 

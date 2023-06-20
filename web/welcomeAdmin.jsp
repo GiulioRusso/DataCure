@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Welcome Admin</title>
+    <title>Admin Interface</title>
     <link rel="stylesheet" href="css/admin.css">
     <style>
         .container {
@@ -36,6 +36,7 @@
             <tr>
                 <th><img src="resources/app-images/logo.png" alt="DataCure Logo" width = "50" height = "50"></th>
                 <th><h2>Admin Interface</h2></th>
+                <th><p>| Logged in as: <s:property value="#session.loggedinUser"/></p></th>
                 <th><s:form action="logoutAction" method="post">
                         <s:submit value="Logout" class="button"/>
                     </s:form>
@@ -45,15 +46,19 @@
     </div>
     <div class="container">
         <div class="left-column">
-            <s:form id="Form" style="form-container" method="POST">
+            <div class="form-container">
+            <s:form id="Form" method="POST">
                 <s:textfield id="userID" name="userID" label="ID"/>
                 <s:textfield id="userPassword" name="userPassword" label="Password"/>
-                <div class="buttons-layout">
-                    <s:submit id="addButton" value="Add" class="button" method="addAction"/>
-                    <s:submit id="updateButton" value="Update" class="button" method="updateAction"/>
-                    <s:submit id="deleteButton" value="Delete" class="button" method="deleteAction"/>
-                </div>
+                <table class="buttons-layout">
+                    <tr>
+                        <th><s:submit id="addButton" value="Add" class="button"/></th>
+                        <th><s:submit id="updateButton" value="Update" class="button"/></th>
+                        <th><s:submit id="deleteButton" value="Delete" class="button"/></th>
+                    </tr>
+                </table>
             </s:form>
+            </div>
 
             <!-- Show MESSAGE/ERROR -->
             <s:actionerror />
@@ -62,18 +67,18 @@
 
         <div class="right-column">
             <h2>Login Records</h2>
-            <table>
+            <table style="">
                 <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Password</th>
+                    <th class="cell-head">ID</th>
+                    <th class="cell-head">Password</th>
                 </tr>
                 </thead>
                 <tbody id="userRecords">
                 <s:iterator value="userList" var="user">
                     <tr>
-                        <td><s:property value="ID"/></td>
-                        <td><s:property value="password"/></td>
+                        <td class="cell"><s:property value="ID"/></td>
+                        <td class="cell"><s:property value="password"/></td>
                     </tr>
                 </s:iterator>
                 </tbody>
