@@ -20,6 +20,7 @@
 
         .right-column {
             flex: 1;
+            margin-right: 400px;
         }
     </style>
 </head>
@@ -41,16 +42,19 @@
         <table>
             <thead>
             <tr>
+                <th>Image</th>
                 <th>Image ID</th>
                 <th>Upload Date</th>
                 <th>Labeled</th>
                 <th>Operator Description</th>
                 <th>Doctor Description</th>
+                <th></th>
             </tr>
             </thead>
             <tbody id="imageRecords">
             <s:iterator value="imageList">
                 <tr>
+                    <td><img src="resources/database-images/<s:property value="idImage"/>" width="100" height="100"/></td>
                     <td><s:property value="idImage"/></td>
                     <td><s:property value="uploadDate"/></td>
                     <td><s:property value="labeled"/></td>
@@ -62,7 +66,7 @@
                         <s:hidden value="%{labeled}" name="label"/>
                         <s:hidden value="%{operatorDescription}" name="oDesc"/>
                         <s:hidden value="%{doctorDescription}" name="dDesc"/>
-                        <s:submit value="Edit"/>
+                        <td><s:submit value="Edit"/></td>
                     </s:form>
 
                     <!-- Show MESSAGE/ERROR -->
