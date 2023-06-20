@@ -6,7 +6,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Welcome Admin</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
     <style>
         .container {
             display: flex;
@@ -30,47 +30,55 @@
         response.sendRedirect("login.jsp");
     }
 %>
-<div class="container">
-    <div class="left-column">
-        <h2>Admin Interface</h2>
-        <s:form action="logoutAction" method="post">
-            <s:submit value="Logout"/>
-        </s:form>
-
-        <s:form id="Form" theme="simple" method="POST">
-            <label for="userID">ID:</label>
-            <s:textfield id="userID" name="userID" cssClass="formTextField"/>
-            <label for="userPassword">Password:</label>
-            <s:textfield id="userPassword" name="userPassword" cssClass="formTextField"/>
-
-            <s:submit id="addButton" value="Add" method="addAction"/>
-            <s:submit id="updateButton" value="Update" method="updateAction"/>
-            <s:submit id="deleteButton" value="Delete" method="deleteAction"/>
-        </s:form>
-
-        <!-- Show MESSAGE/ERROR -->
-        <s:actionerror />
-
-    </div>
-
-    <div class="right-column">
-        <h2>Login Records</h2>
+<div class="mega-container">
+    <div>
         <table>
-            <thead>
             <tr>
-                <th>ID</th>
-                <th>Password</th>
+                <th><img src="resources/app-images/logo.png" alt="DataCure Logo" width = "50" height = "50"></th>
+                <th><h2>Admin Interface</h2></th>
+                <th><s:form action="logoutAction" method="post">
+                        <s:submit value="Logout" class="button"/>
+                    </s:form>
+                </th>
             </tr>
-            </thead>
-            <tbody id="userRecords">
-            <s:iterator value="userList" var="user">
-                <tr>
-                    <td><s:property value="ID"/></td>
-                    <td><s:property value="password"/></td>
-                </tr>
-            </s:iterator>
-            </tbody>
         </table>
+    </div>
+    <div class="container">
+        <div class="left-column">
+            <s:form id="Form" style="form-container" method="POST">
+                <s:textfield id="userID" name="userID" label="ID"/>
+                <s:textfield id="userPassword" name="userPassword" label="Password"/>
+                <div class="buttons-layout">
+                    <s:submit id="addButton" value="Add" class="button" method="addAction"/>
+                    <s:submit id="updateButton" value="Update" class="button" method="updateAction"/>
+                    <s:submit id="deleteButton" value="Delete" class="button" method="deleteAction"/>
+                </div>
+            </s:form>
+
+            <!-- Show MESSAGE/ERROR -->
+            <s:actionerror />
+
+        </div>
+
+        <div class="right-column">
+            <h2>Login Records</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Password</th>
+                </tr>
+                </thead>
+                <tbody id="userRecords">
+                <s:iterator value="userList" var="user">
+                    <tr>
+                        <td><s:property value="ID"/></td>
+                        <td><s:property value="password"/></td>
+                    </tr>
+                </s:iterator>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
