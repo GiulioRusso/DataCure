@@ -1,0 +1,89 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: auto;
+    max-width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    font-family: Menlo, monospace;
+    padding: 20px;
+
+}
+
+.container input[type="submit"],
+.button,
+.fileselect::-webkit-file-upload-button {
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: Menlo, monospace;
+    font-size: 14px;
+}
+
+.container input[type="submit"]:hover,
+.button:hover,
+.fileselect::-webkit-file-upload-button:hover{
+    background-color: black;
+    color: white;
+}
+
+.form-container {
+    margin-top: -20px;
+}
+
+.textfield {
+    margin-top: 10px;
+    width: 100%;
+    padding: 4px;
+    margin-bottom: 10px;
+    font-family: Menlo, monospace;
+    border-radius: 5px;
+}
+
+.action-error {
+    font-family: Menlo, monospace;
+    color: black;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+    align-items: center;
+}
+
+.mega-container{
+    flex-direction: column;
+    font-family: Menlo, monospace;
+}
+
+.about-description{
+    font-family: Menlo, monospace;
+    color: gray;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.cell {
+    border: 1px solid rgba(128, 128, 128, 0.8);
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+}
+
+.cell-head {
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    text-align: center;
+    padding: 10px 20px;
+}
